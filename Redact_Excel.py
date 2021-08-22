@@ -6,7 +6,7 @@ Created on Fri Jun 18 11:51:58 2021
 @author: gibson
 """
 
-#link excel files
+#link excel files  (needs comments and check functionality with multiple spreadsheets in one workbook)
 import os
 from os import listdir
 
@@ -28,28 +28,10 @@ def Direct():
         Directory = os.listdir(Path)
         Directory.remove(".DS_Store")
         Directory.remove("Redact_Excel.py")
-        NewDirect = input("Enter the new directory for your files (include / at end), or leave blank input to keep the same: ") ### check include vs don't include
+        NewDirect = input("Enter the new directory for your files (include / at end), or leave blank input to keep the same: ")
         return Directory, NewDirect, Path
 
 Directory, NewDirect_Path, Path = Direct()
-
-#Directory = os.listdir('/Users/gibson/Desktop/projects/redact/')
-#Directory.remove(".DS_Store")
-#Directory.remove("RedactExcel-copy.py")
-#Directory.remove("pair.xlsx")
-
-
-'''
-def Is_in_direct_test(Directory):
-    if "RedactExcelNew.py" in Directory:
-        Directory.remove("RedactExcel.py")
-        if is_Mac = "Mac":
-            Directory.remove(".DS_Store")
-    else:
-        print("invalid input, please try again \n")
-        Directory = Direct()
-    return Directory
-'''
 
 
 Original_Sheets = {}
@@ -67,7 +49,6 @@ def Create_Key_Pairs():
     Keys=""
     Pairs=""
     PairsFlag = False
-    ### below file would be unchanged in its transformed output
     x = input("would you like to create keys from a pre-existing column? (y/n): ")
     if x == "y":
          file_p = input("please type file path: ")
@@ -127,7 +108,7 @@ def transform(Original_Sheets, df):
 def sheets_recursive(A, df, PairsFlag):   
     for i, record in A.iterrows():
         for cell in record:
-            if cell in set(Keys): #name values not 'in' Series (only index values)
+            if cell in set(Keys): # name values not 'in' Series (only index values)
                 # each key is replaced by the same value
                 if PairsFlag == True:
                     A = A.replace(cell, Pairs[0])
@@ -141,14 +122,10 @@ def sheets_recursive(A, df, PairsFlag):
 New_Sheet_Dict = transform(Original_Sheets, df)
 
 
-
-### need to give option for new name
 def save_new_files(NewDirect_Path):
-    #NewDirect = "/Users/gibson/Desktop/NewRedact/"
     if len(NewDirect_Path) != 0:
         for x in range(0, len(Directory)):
             OldFileNameXLSX = Directory[x]
-            #OldFileNameXLSX = File.split("/")[-2]
             OldFileName = OldFileNameXLSX.split(".xlsx")[0]
             NewFileNameXLSX = OldFileName + "_new" + ".xlsx"
             NewFilePath = NewDirect_Path + NewFileNameXLSX
@@ -159,5 +136,4 @@ def save_new_files(NewDirect_Path):
             New_Sheet_Dict[x].to_excel(NewFilePath.strip(".xlsx") + "_new.xlsx")
 save_new_files(NewDirect_Path)
 
-### need to comment
 

@@ -40,7 +40,7 @@ Original_Sheets = {}
 i = -1
 for items in Directory:
     # may need to tweek removing hidden items in container
-    print("Directory: ")
+    print("Files in directory: ")
     print(items)
     print()
     i += 1

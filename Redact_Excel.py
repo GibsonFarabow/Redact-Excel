@@ -24,9 +24,11 @@ def Direct():
         NewDirect = input("Enter the new directory for your files (include \ at end), or leave blank input to keep the same: ") 
         return Directory, NewDirect, Path
     else:
-        Path = input("Enter file directory path of files to change (must be the same as this file): ")
+        Path = input("Enter file directory path of files to change (include / at end) (must be the same as this file): ")
         Directory = os.listdir(Path)
         Directory.remove(".DS_Store")
+        #Directory.remove(".git")
+        #Directory.remove("README.md")
         Directory.remove("Redact_Excel.py")
         NewDirect = input("Enter the new directory for your files (include / at end), or leave blank input to keep the same: ")
         return Directory, NewDirect, Path
@@ -37,7 +39,10 @@ Directory, NewDirect_Path, Path = Direct()
 Original_Sheets = {}
 i = -1
 for items in Directory:
+    # may need to tweek removing hidden items in container
+    print("Directory: ")
     print(items)
+    print()
     i += 1
     Original_Sheets[i] = pd.read_excel(Path + items, engine = "openpyxl")
 

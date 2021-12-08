@@ -20,7 +20,7 @@ def Direct():
     if is_Mac == "Windows":
         Path = input("Enter file directory path of files to change (must be the same as this file), for example, 'c:/Users\gibson\Desktop\folder\': ")
         Directory = os.listdir(Path)
-        Directory.remove("Redact_Excel.py")
+        #Directory.remove("Redact_Excel.py")
         NewDirect = input("Enter the new directory for your files (include \ at end), or leave blank input to keep the same: ") 
         return Directory, NewDirect, Path
     else:
@@ -29,7 +29,7 @@ def Direct():
         Directory.remove(".DS_Store")
         #Directory.remove(".git")
         #Directory.remove("README.md")
-        Directory.remove("Redact_Excel.py")
+        #Directory.remove("Redact_Excel.py")
         NewDirect = input("Enter the new directory for your files (include / at end), or leave blank input to keep the same: ")
         return Directory, NewDirect, Path
 

@@ -136,14 +136,6 @@ def save_new_files():
             for sheetname in New_Sheet_Dict[i]:
                 df = New_Sheet_Dict[i][sheetname]
                 df.to_excel(writer, sheet_name=sheetname, index=False)
-    '''
-    for i in range(0, len(Directory)):
-        NewFilePath = Directory[i]
-        with pd.ExcelWriter(Path + NewFilePath) as writer:    
-            for sheetname in New_Sheet_Dict[i]:
-                df = New_Sheet_Dict[i][sheetname]
-                df.to_excel(writer, sheet_name=sheetname, index=False)
-    '''
     return
 
 save_new_files()
